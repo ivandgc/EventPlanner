@@ -1,0 +1,2 @@
+module UserOccasionsHelper
+end

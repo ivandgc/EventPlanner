@@ -1,0 +1,2 @@
+class UserOccasionsController < ApplicationController
+end
