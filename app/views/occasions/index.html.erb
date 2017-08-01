@@ -1,0 +1,7 @@
+<h1>Occasions</h1>
+<%= link_to "Create New Occasion", new_occasion_path %>
+<ul>
+  <% @user.user_occasions.each do |user_occasion| %>
+  <li><%= link_to "#{user_occasion.occasion.title}", occasion_path(user_occasion.occasion) %></li>
+  <% end %>
+</ul>

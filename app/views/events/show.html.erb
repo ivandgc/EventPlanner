@@ -1,0 +1,10 @@
+<h1> <%= @event.name %> </h1>
+<ul>
+  <li> <%= @event.location %> </li>
+  <li> <%= @event.duration %> </li>
+  <li> <%= @event.term.start_term %> </li>
+  <li> <%= @event.term.end_term %> </li>
+</ul>
+<br>
+<%= link_to "Edit Event", edit_occasion_event_path(@event.occasion, @event) %>
+<%= link_to "Delete Event", occasion_event_path(@event.occasion, @event), method: "DELETE" %>

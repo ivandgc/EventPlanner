@@ -1,0 +1,28 @@
+<h1>Occasion: <%= @occasion.title %></h1>
+<label>Start Time:</label>
+<%= @occasion.term.start_term %><br>
+<label>End Time:</label>
+<%= @occasion.term.end_term %>
+<br></br>
+<% if occasion_admin? %>
+  <p>Add a friend:
+    <%= form_tag add_friend_path do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag "Add Friend" %>
+    <% end %>
+  </p>
+  <br>
+  <%= link_to "Edit Occasion", edit_occasion_path %>
+  <br>
+  <%= link_to "Delete Occasion", occasion_path, method: "DELETE" %>
+<% end %>
+<%= flash[:message] %>
+<br>
+<%= link_to "Create New Event", new_occasion_event_path(@occasion) %>
+<br>
+<ul>
+<% @occasion.events.each do |event| %>
+  <li><%= link_to event.name, occasion_event_path(@occasion, event) %> Votes: <%= event.user_events.count %><br>
+  <%= link_to "Vote for this event", vote_path(@occasion, event), method: "POST" %></li>
+<% end %>
+</ul>

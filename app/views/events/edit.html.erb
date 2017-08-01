@@ -1,0 +1,20 @@
+<h1>Edit Event</h1>
+
+<br>
+<%= flash[:message] %>
+<br>
+<%= form_for [@event.occasion, @event] do |f| %>
+  <%= f.label "Name:" %>
+  <%= f.text_field :name %><br>
+  <%= f.label "Location:" %>
+  <%= f.text_field :location %><br>
+  <%= f.label "Minimum Duration:" %>
+  <%= f.time_field :duration %><br>
+  <%= f.fields_for :term, @event.term do |t| %>
+    <%= t.label "Start Time:" %>
+    <%= t.datetime_field :start_term, min: DateTime.now %><br>
+    <%= t.label "End Time:" %>
+    <%= t.datetime_field :end_term, min: DateTime.now %><br>
+  <% end %>
+  <%= f.submit %>
+<% end %>
