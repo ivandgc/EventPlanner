@@ -1,11 +1,11 @@
-<h1>Hello, <%= @user.name %>!</h1>
+<h1>Hello, <%= username %>!</h1>
 
 <ul>
   <li> <%= @user.name %> </li>
   <li> <%= @user.email %> </li>
 </ul>
 
+<%# link_to "Occasions", occasions_path %><br>
 <%= link_to "Edit Profile", edit_user_path  %>
 <%= link_to "Delete Account", user_path, method: "DELETE" %>
 <%= link_to "Sign Out", signout_path, method: "DELETE" %>
-<%= link_to "Occasions", occasions_path %>

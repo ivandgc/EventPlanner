@@ -1,8 +1,8 @@
 <h1>Occasion: <%= @occasion.title %></h1>
 <label>Start Time:</label>
-<%= @occasion.term.start_term %><br>
+<%= @occasion.term.start_term.strftime("%A, %b %d, %Y - %I:%M %P") %><br>
 <label>End Time:</label>
-<%= @occasion.term.end_term %>
+<%= @occasion.term.end_term.strftime("%A, %b %d, %Y - %I:%M %P") %>
 <br></br>
 <% if occasion_admin? %>
   <p>Add a friend:
@@ -12,7 +12,7 @@
     <% end %>
   </p>
   <br>
-  <%= link_to "Edit Occasion", edit_occasion_path %>
+  <%= link_to "Edit Occasion", edit_occasion_path(@occasion) %>
   <br>
   <%= link_to "Delete Occasion", occasion_path, method: "DELETE" %>
 <% end %>
@@ -20,9 +20,12 @@
 <br>
 <%= link_to "Create New Event", new_occasion_event_path(@occasion) %>
 <br>
-<ul>
-<% @occasion.events.each do |event| %>
-  <li><%= link_to event.name, occasion_event_path(@occasion, event) %> Votes: <%= event.user_events.count %><br>
-  <%= link_to "Vote for this event", vote_path(@occasion, event), method: "POST" %></li>
-<% end %>
-</ul>
+
+  <% group_events.each do |group| %>
+  <ol>
+    <% group.each do |event| %>
+    <li><%= link_to event.name, occasion_event_path(@occasion, event) %> Votes: <%= event.user_events.count %><br>
+      <%= link_to "Vote for this event", vote_path(@occasion, event), method: "POST" %></li>
+    <% end %>
+  </ol>
+  <% end %>

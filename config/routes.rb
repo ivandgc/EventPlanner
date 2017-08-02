@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :terms
   resources :user_occasions
+  get '/occassions/new', to: 'occasions#new', as: 'new_occasion'
+  get '/occasions/:occasion_id', to: 'occasions#show', as: 'occasion'
   resources :occasions do
     resources :events
   end
@@ -12,8 +14,8 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
 
-  post '/occasions/:id/add_friend', to: 'occasions#add_friend', as: 'add_friend'
+  post '/occasions/:occasion_id/add_friend', to: 'occasions#add_friend', as: 'add_friend'
 
-  post '/occasions/:id/event/:id/vote', to: 'events#vote', as: 'vote'
+  post '/occasions/:occasion_id/event/:id/vote', to: 'occasions#vote', as: 'vote'
 
 end

@@ -1,9 +1,9 @@
 <h1> <%= @event.name %> </h1>
 <ul>
-  <li> <%= @event.location %> </li>
-  <li> <%= @event.duration %> </li>
-  <li> <%= @event.term.start_term %> </li>
-  <li> <%= @event.term.end_term %> </li>
+  <li>Location: <%= @event.location %> </li>
+  <li>Duration: <%= @event.duration.strftime("%H hr %M min") %> </li>
+  <li>Start Time: <%= @event.term.start_term.strftime("%A, %b %d, %Y - %I:%M %P") %> </li>
+  <li>End Time: <%= @event.term.end_term.strftime("%A, %b %d, %Y - %I:%M %P") %> </li>
 </ul>
 <br>
 <%= link_to "Edit Event", edit_occasion_event_path(@event.occasion, @event) %>

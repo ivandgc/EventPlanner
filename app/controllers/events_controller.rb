@@ -48,17 +48,6 @@ class EventsController < ApplicationController
     redirect_to occasion_path(@occasion)
   end
 
-  def vote
-    @event = Event.find(params[:id])
-    @user = User.find(current_user)
-    @occasion = @event.occasion
-    @user_occasion = UserOccasion.find_by(user: @user, occasion: @occasion)
-    @vote = UserEvent.find_or_initialize_by(user_occasion: @user_occasion)
-    @vote.event = @event
-    flash[:message] = (@vote.save ? "Vote recorded" : "Vote was not recorded")
-    redirect_to occasion_path(@occasion)
-  end
-
   private
 
   def event_params

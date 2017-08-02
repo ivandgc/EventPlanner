@@ -8,9 +8,9 @@
   <%= f.time_field :duration %><br>
   <%= f.fields_for :term, @event.term do |t| %>
     <%= t.label "Start Time:" %>
-    <%= t.datetime_field :start_term, min: DateTime.now %><br>
+    <%= t.datetime_field :start_term, min: Date.today %><br>
     <%= t.label "End Time:" %>
-    <%= t.datetime_field :end_term, min: DateTime.now %><br>
+    <%= t.datetime_field :end_term, min: Date.today %><br>
   <% end %>
   <%= f.submit %>
 <% end %>
