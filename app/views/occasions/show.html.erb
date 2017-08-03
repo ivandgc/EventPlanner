@@ -4,7 +4,7 @@
 <label>End Time:</label>
 <%= @occasion.term.end_term.strftime("%A, %b %d, %Y - %I:%M %P") %>
 <br></br>
-<% if occasion_admin? %>
+<% if @occasion.admin.id == current_user %>
   <p>Add a friend:
     <%= form_tag add_friend_path do %>
       <%= text_field_tag :search %>
@@ -28,4 +28,12 @@
       <%= link_to "Vote for this event", vote_path(@occasion, event), method: "POST" %></li>
     <% end %>
   </ol>
+  <% end %>
+  <h4>Admin:</h4>
+  <%= @occasion.admin.name.capitalize %>
+  <h4>Friends in Occasion:</h4>
+  <% @occasion.users.drop(1).each do |user| %>
+  <ul>
+    <li> <%= user.name.capitalize %> </li>
+  </ul>
   <% end %>

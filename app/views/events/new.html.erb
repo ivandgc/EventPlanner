@@ -5,7 +5,7 @@
   <%= f.label "Location" %>
   <%= f.text_field :location %><br>
   <%= f.label "Minimum Duration" %>
-  <%= f.time_field :duration %><br>
+  <%= f.time_select :duration, minute_step: 30, default: {hour: 1} %><br>
   <%= f.fields_for :term, @event.term do |t| %>
     <%= t.label "Start Time:" %>
     <%= t.datetime_field :start_term, min: Date.today %><br>

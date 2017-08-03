@@ -6,5 +6,6 @@
   <li>End Time: <%= @event.term.end_term.strftime("%A, %b %d, %Y - %I:%M %P") %> </li>
 </ul>
 <br>
+<%= link_to "Back to Occasion", occasion_path(@event.occasion) %><br></br>
 <%= link_to "Edit Event", edit_occasion_event_path(@event.occasion, @event) %>
 <%= link_to "Delete Event", occasion_event_path(@event.occasion, @event), method: "DELETE" %>

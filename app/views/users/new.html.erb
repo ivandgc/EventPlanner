@@ -1,75 +1,23 @@
-<!-- <h1>Create a New User</h1> -->
-<%# flash[:message] %>
-<%# form_for @user do |f| %>
-  <%# f.label "Name: " %>
-  <%# f.text_field :name %> <br>
-  <%# f.label "E-mail: " %>
-  <%# f.text_field :email %> <br>
-  <%# f.label "Password: " %>
-  <%# f.password_field :password %> <br>
-  <%# f.label "Confirm Password: " %>
-  <%# f.password_field :password_confirmation %> <br>
-  <%# f.submit %>
-<%# end %>
-
-
-<style type="text/css">
-  body {
-    background-color: #DADADA;
-  }
-  body > .grid {
-    height: 100%;
-  }
-  .image {
-    margin-top: -100px;
-  }
-  .column {
-    max-width: 450px;
-  }
-</style>
-
-
-<div class="ui middle aligned center aligned grid">
-
-  <div class="column">
-    <h2 class="ui teal image header">
-      <div class="content">
-        Sign-up using your E-mail address
+<body class="homepage">
+  <div class="home_msg">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Sign up!</h1>
       </div>
-    </h2>
-
-<%= flash[:message] %>
-<%= form_for @user, class: "ui large form" do |f| %>
-  <div class="ui stacked segment">
-
-      <div class="field">
-        <div class="ui left icon input">
-          <%= f.text_field :name, placeholder: "Full name" %>
-        </div>
+      <%= flash[:message] %>
+      <%= form_for @user, {class: 'form-group'} do |f| %>
+      <div class="panel-body">
+          <%= f.label "Name: " %>
+          <%= f.text_field :name, class: 'form-control'%>
+          <%= f.label "E-mail: " %>
+          <%= f.text_field :email, class: 'form-control'%>
+          <%= f.label "Password: " %>
+          <%= f.password_field :password, class: 'form-control'%>
+          <%= f.label "Confirm Password: " %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %><br>
+          <%= f.submit class: "btn btn-primary btn-block" %>
+        <% end %><br>
       </div>
-
-      <div class="field">
-        <div class="ui left icon input">
-          <%= f.text_field :email, placeholder: "E-mail address" %>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="ui left icon input">
-        <%= f.password_field :password, placeholder: "Password" %>
-        </div>
-      </div>
-
-      <div class="field">
-        <div class="ui left icon input">
-        <%= f.password_field :password_confirmation, placeholder: "Confirm password" %>
-        </div>
-      </div>
-
-      <%= f.submit "Create new account", class: "ui fluid large teal submit button" %>
-
+    </div>
   </div>
-<% end %>
-
-</div>
-</div>
+</body>
