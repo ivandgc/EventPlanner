@@ -78,6 +78,7 @@ class OccasionsController < ApplicationController
   end
 
   def vote
+    byebug
     @event = Event.find(params[:id])
     @user = User.find(current_user)
     @occasion = @event.occasion
