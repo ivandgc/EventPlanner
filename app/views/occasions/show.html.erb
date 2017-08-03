@@ -1,26 +1,50 @@
-<h1>Occasion: <%= @occasion.title %></h1>
-<label>Start Time:</label>
-<%= @occasion.term.start_term.strftime("%A, %b %d, %Y - %I:%M %P") %><br>
-<label>End Time:</label>
-<%= @occasion.term.end_term.strftime("%A, %b %d, %Y - %I:%M %P") %>
-<br></br>
-<% if occasion_admin? %>
-  <p>Add a friend:
-    <%= form_tag add_friend_path do %>
-      <%= text_field_tag :search %>
-      <%= submit_tag "Add Friend" %>
-    <% end %>
-  </p>
-  <br>
-  <%= link_to "Edit Occasion", edit_occasion_path(@occasion) %>
-  <br>
-  <%= link_to "Delete Occasion", occasion_path, method: "DELETE" %>
-<% end %>
-<%= flash[:message] %>
-<br>
-<%= link_to "Create New Event", new_occasion_event_path(@occasion) %>
-<br>
+<style media="screen">
+  .d-inline {
+    display: inline-block;
+  }
+</style>
 
+<div class="row">
+  <div class="col-md-3">
+    <%= link_to "Edit Occasion", edit_occasion_path(@occasion), class: "btn btn-warning btn-sm" %>
+    <%= link_to "Delete Occasion", occasion_path, class: "btn btn-danger btn-sm", method: "DELETE" %>
+    <br>
+  <h1 style="color: turquoise"><%= @occasion.title %></h1>
+  <p><label>Start Time:</label><br>
+  <%= @occasion.term.start_term.strftime("%A, %b %d, %Y - %I:%M %P") %><br>
+  <label>End Time:</label><br>
+  <%= @occasion.term.end_term.strftime("%A, %b %d, %Y - %I:%M %P") %></p>
+  <br>
+  <br>
+  <br>
+
+  <%= link_to "Create New Event", new_occasion_event_path(@occasion), class: "btn btn-primary" %>
+  <br>
+  <br>
+
+  </div>
+
+  <div class="col-md-3">
+  </div>
+
+  <div class="col-md-3">
+  </div>
+
+  <div class="col-md-3">
+    <br>
+    <% if occasion_admin? %>
+        <%= form_tag add_friend_path, class: "d-inline" do %>
+          <%= text_field_tag :search, nil, placeholder: "Search for friends", class: "form-control", style: "display: inline-block; width: 150px" %>
+          <%= submit_tag "Add Friend", class: "btn btn-outline-primary d-inline" %>
+        <% end %>
+      <br>
+      <br>
+    <% end %>
+    <%= flash[:message] %>
+  </div>
+</div>
+
+<div class="row">
   <% group_events.each do |group| %>
   <ol>
     <% group.each do |event| %>
@@ -29,3 +53,4 @@
     <% end %>
   </ol>
   <% end %>
+</div>

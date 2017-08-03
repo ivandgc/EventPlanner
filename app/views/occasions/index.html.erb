@@ -1,7 +1,28 @@
-<h1>Occasions</h1>
-<%= link_to "Create New Occasion", new_occasion_path %>
-<ul>
-  <% @user.user_occasions.each do |user_occasion| %>
-  <li><%= link_to "#{user_occasion.occasion.title}", occasion_path(user_occasion.occasion) %></li>
-  <% end %>
-</ul>
+<h1 style="color: turquoise">Occasions</h1>
+<br>
+<br>
+<%= link_to "Create New Occasion", new_occasion_path, class: "btn btn-primary" %>
+<br>
+<br>
+<br>
+  <div class="row">
+
+    <% @user.user_occasions.each do |user_occasion| %>
+    <div class="col-md-4" style="border-color: darkturquoise; color: darkturquoise">
+      <a href="/occasions/<%= user_occasion.occasion.id %>">
+      <div class="panel panel-info">
+        <img class="img-responsive" src="http://browardschools.com/SiteMedia/SiteResources/icons/PIO/Calendar_Green.png">
+        <h4 class="panel-heading"> <%= "#{user_occasion.occasion.title}" %> </h4>
+          <ul class="panel-text">
+            <% user_occasion.occasion.events.each do |event| %>
+              <p><li><%= event.name %></li></p>
+            <% end %>
+        </ul>
+      </div>
+      </a>
+    </div>
+    <% end %>
+  </div>
+
+<!-- http://browardschools.com/SiteMedia/SiteResources/icons/PIO/Calendar_Green.png -->
+<!-- http://www.racedepartment.com/images/rd_calext/calendar.png -->

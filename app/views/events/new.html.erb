@@ -4,6 +4,8 @@
   <%= f.text_field :name %><br>
   <%= f.label "Location" %>
   <%= f.text_field :location %><br>
+  <%= f.label "Description" %>
+  <%= f.text_field :description %><br>
   <%= f.label "Minimum Duration" %>
   <%= f.time_field :duration %><br>
   <%= f.fields_for :term, @event.term do |t| %>
@@ -12,5 +14,5 @@
     <%= t.label "End Time:" %>
     <%= t.datetime_field :end_term, min: Date.today %><br>
   <% end %>
-  <%= f.submit %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

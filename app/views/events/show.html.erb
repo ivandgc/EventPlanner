@@ -1,6 +1,7 @@
 <h1> <%= @event.name %> </h1>
 <ul>
   <li>Location: <%= @event.location %> </li>
+  <li>Description: <%= @event.description %> </li>
   <li>Duration: <%= @event.duration.strftime("%H hr %M min") %> </li>
   <li>Start Time: <%= @event.term.start_term.strftime("%A, %b %d, %Y - %I:%M %P") %> </li>
   <li>End Time: <%= @event.term.end_term.strftime("%A, %b %d, %Y - %I:%M %P") %> </li>
