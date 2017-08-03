@@ -19,4 +19,18 @@
 body {
   padding-top: 70px;
   padding-bottom: 30px;
+  margin-top: 75px;
+}
+
+.homepage {
+  background-image: url(https://media.giphy.com/media/l1KVtp2bBhehBRxks/giphy.gif);
+  background-size: cover;
+}
+
+.home_msg {
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -1,4 +1,20 @@
-  <h1>Welcome to your Event Planner</h1>
-  <img class="ui fluid image" src="https://media.giphy.com/media/xTiQywlOn0gKyz0l56/giphy.gif" alt=""><br>
-  <%= link_to "Sign In", signin_path %>
-  <%= link_to "Sign Up", new_user_path %>
+<body class="homepage">
+  <div class="home_msg">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>Event Planner</h1>
+      </div>
+      <%= flash[:message] %>
+      <%= form_tag signin_path, {class: 'form-group'} do %>
+      <div class="panel-body">
+          <%= label_tag 'E-mail:' %>
+          <%= text_field_tag :'user[email]', "", class: 'form-control', placeholder: "user@domain.com" %>
+          <%= label_tag 'Password:' %>
+          <%= password_field_tag :'user[password]', "", class: 'form-control', placeholder: "*******" %><br>
+          <%= submit_tag "Sign In", class: "btn btn-primary btn-block" %>
+        <% end %><br>
+        <%= button_to "Sign up!", new_user_path, method: :get, class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
+  </div>
+</body>

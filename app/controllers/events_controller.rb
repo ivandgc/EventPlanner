@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_user, only: [:create]
 
   def new
     @event = Event.new
@@ -11,7 +12,6 @@ class EventsController < ApplicationController
     @occasion = Occasion.find(params[:occasion_id])
     @event.term = @term
     @event.occasion = @occasion
-    @user = User.find(current_user)
     @event.admin = @user
     if @event.save
       redirect_to occasion_event_path(@occasion, @event)
