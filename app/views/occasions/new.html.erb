@@ -1,12 +1,12 @@
 <h1>Create New Occasion</h1>
 <br>
 
-<% if @occasion.errors.any? %>
-    <ul>
-    <% @occasion.errors.full_messages.each do |msg| %>
+<% if flash[:message] %>
+  <ul>
+    <% flash[:message].each do |msg| %>
       <li><%= msg %></li>
     <% end %>
-    </ul>
+  </ul>
 <% end %>
 
 <%= form_for(@occasion) do |f| %>

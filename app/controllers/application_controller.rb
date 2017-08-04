@@ -25,4 +25,9 @@ class ApplicationController < ActionController::Base
     @user = User.find(current_user) if logged_in?
   end
 
+  def set_occasion_check_user
+    @occasion = Occasion.find(params[:occasion_id])
+    redirect_to occasions_path if @occasion.users.find {|u| u.id == current_user} == nil
+  end
+
 end

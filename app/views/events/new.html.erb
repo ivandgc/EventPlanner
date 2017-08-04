@@ -1,4 +1,11 @@
 <h1>Create Event</h1>
+<% if flash[:message] %>
+  <ul>
+    <% flash[:message].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for [@occasion, @event] do |f| %>
   <%= f.label "Name" %>
   <%= f.text_field :name %><br>
