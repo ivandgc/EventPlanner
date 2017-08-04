@@ -1,6 +1,12 @@
 <h1>Edit Occasion</h1>
 <br>
-<%= flash[:message] %>
+<% if flash[:message] %>
+  <ul>
+    <% flash[:message].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <br>
 <%= form_for(@occasion) do |f| %>
   <%= f.label "Title:" %>

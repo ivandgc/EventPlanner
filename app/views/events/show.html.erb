@@ -7,5 +7,7 @@
 </ul>
 <br>
 <%= link_to "Back to Occasion", occasion_path(@event.occasion) %><br></br>
-<%= link_to "Edit Event", edit_occasion_event_path(@event.occasion, @event) %>
-<%= link_to "Delete Event", occasion_event_path(@event.occasion, @event), method: "DELETE" %>
+<% if @event.admin.id == current_user %>
+  <%= link_to "Edit Event", edit_occasion_event_path(@event.occasion, @event) %>
+  <%= link_to "Delete Event", occasion_event_path(@event.occasion, @event), method: "DELETE" %>
+<% end %>

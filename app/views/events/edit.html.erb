@@ -1,7 +1,12 @@
 <h1>Edit Event</h1>
-
 <br>
-<%= flash[:message] %>
+<% if flash[:message] %>
+  <ul>
+    <% flash[:message].each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <br>
 <%= form_for [@event.occasion, @event] do |f| %>
   <%= f.label "Name:" %>

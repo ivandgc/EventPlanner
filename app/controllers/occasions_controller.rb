@@ -3,8 +3,8 @@ require 'byebug'
 class OccasionsController < ApplicationController
   helper_method :group_events
   before_action :set_user, only: [:index, :create, :vote]
-  before_action :set_occasion, only: [:edit, :update, :destroy, :add_friend]
-  before_action :set_occasion_check_user, only: [:show, :vote]
+  before_action :set_occasion, only: [:edit, :update, :destroy]
+  before_action :set_occasion_check_user, only: [:show, :vote, :add_friend]
   before_action :occasion_admin?, only: [:edit, :update, :destroy, :add_friend]
 
   def index
@@ -23,7 +23,7 @@ class OccasionsController < ApplicationController
       @user_occasions = UserOccasion.create(user: @user, occasion: @occasion)
       redirect_to occasion_path(@occasion)
     else
-      flash[:message] = "Invalid input"
+      flash[:message] = @occasion.errors.full_messages
       render :new
     end
   end
@@ -40,7 +40,7 @@ class OccasionsController < ApplicationController
     if @occasion.update(occasion_params)
       redirect_to occasion_path(@occasion)
     else
-      flash[:message] = "Enter correct data"
+      flash[:message] = @occasion.errors.full_messages
       render :edit
     end
   end
@@ -52,7 +52,7 @@ class OccasionsController < ApplicationController
 
   def add_friend
     @user = User.find_by(name: params[:search].downcase)
-    @user_occasion = UserOccasion.create(user: @user, occasion: @occasion)
+    @user_occasion = UserOccasion.find_or_create_by(user: @user, occasion: @occasion)
     flash[:message] = "#{@user.name.capitalize} Added to #{@occasion.title}"
     redirect_to occasion_path(@occasion)
   end
@@ -90,7 +90,10 @@ class OccasionsController < ApplicationController
         temp << @sorted_events[count] if event.term.end_term > @sorted_events[count].term.start_term
         count += 1
       end
-      groups << temp unless temp.count == 1 &&  groups.flatten.find {|e| e == temp.first} != nil
+      if groups.flatten.find {|e| e == temp.last} != nil
+      elsif !(temp.count == 1 &&  groups.flatten.find {|e| e == temp.first} != nil)
+        groups << temp
+      end
     end
     groups
   end
@@ -109,11 +112,6 @@ class OccasionsController < ApplicationController
 
   def set_occasion
     @occasion = Occasion.find(params[:id])
-  end
-
-  def set_occasion_check_user
-    @occasion = Occasion.find(params[:occasion_id])
-    redirect_to occasions_path if @occasion.users.find {|u| u.id == current_user} == nil
   end
 
   def occasion_admin?
