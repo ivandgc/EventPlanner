@@ -33,7 +33,7 @@
            <!--  nav here -->
            <ul class="nav navbar-nav navbar-right">
              <% if logged_in? %>
-              <li><a href="/users/<%= current_user %>"> <%= username.capitalize %> </a></li>
+             <li><a href="/users/<%= current_user %>"> <%= username.capitalize %> </a></li>
               <li><a data-method="delete" href="/signout" rel="nofollow">Log Out</a></li>
             <% end %>
           </ul>

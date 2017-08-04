@@ -60,6 +60,7 @@ class OccasionsController < ApplicationController
 
 
   def vote
+    byebug
     @event = Event.find(params[:id])
     @user_occasion = UserOccasion.find_by(user: @user, occasion: @occasion)
     @conflicting_events = group_events.select {|e| e.include?(@event)}.flatten.uniq
